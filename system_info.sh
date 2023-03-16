@@ -1,0 +1,13 @@
+#!/bin/bash
+RED="\E[1;31m"
+GREEN="\E[1;32m"
+END="\E[0m"
+echo -e "$GREEN-----------------Host systeminfo------------------$END"
+echo -e "HOSTNAME:     $RED`hostname`$END" 
+echo -e "IPADDR:       $RED`ifconfig ens33|grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'|head -n1`$END"
+echo -e "OSVERSION:    $RED`cat /etc/redhat-release`$END" 
+echo -e "KERNEL:       $RED`uname -r`$END" 
+echo -e "CPU:         $RED`lscpu|grep 'Model name'|tr -s ' '|cut -d : -f2`$END" 
+echo -e "MEMORY:      $RED`free -h|grep Mem|tr -s ' ': |cut -d : -f2`$END" 
+echo -e "DISK:         $RED`lsblk |grep '^sd'|tr -s ' '|cut -d " " -f4` $END" 
+echo -e "$GREEN--------------------------------------------------$END"
